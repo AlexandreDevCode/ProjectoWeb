@@ -1,7 +1,7 @@
 <?php include("../../template/header.php");?>
 
 <div class="card">
-    <div class="card-header">Utilizador</div>
+    <div class="card-header">Registar Utilizador</div>
     <div class="card-body">
         <form action="" method="post" enctype="multipart/form-data">
         <div class="mb-3">
