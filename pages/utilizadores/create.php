@@ -3,18 +3,18 @@
 if($_POST){
 
     $utilizador = (isset($_POST["utilizador"])?$_POST["utilizador"]:"");
-    $password = (isset($_POST["password"])?$_POST["password"]:"");
+    $password_user = (isset($_POST["password_user"])?$_POST["password_user"]:"");
     $email = (isset($_POST["email"])?$_POST["email"]:"");
     $tipo = (isset($_POST["tipo"])?$_POST["tipo"]:"utilizador");
 
     $sentencia = $conexion->prepare("
     INSERT INTO tbl_utilizador
-    (id_utilizador,utilizador,password,email,tipo)
+    (id_utilizador,utilizador,password_user,email,tipo)
     VALUES
-    (null,:utilizador,:password,:email,:tipo)");
+    (null,:utilizador,:password_user,:email,:tipo)");
 
     $sentencia->bindParam(":utilizador",$utilizador);
-    $sentencia->bindParam(":password",$password);
+    $sentencia->bindParam(":password_user",$password_user);
     $sentencia->bindParam(":email",$email);
     $sentencia->bindParam(":tipo",$tipo);
 
@@ -52,12 +52,12 @@ if($_POST){
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password_user" class="form-label">Password</label>
                 <input
                     type="password"
                     class="form-control"
-                    name="password"
-                    id="password"
+                    name="password_user"
+                    id="password_user"
                     placeholder="Password"
                     required
                 />

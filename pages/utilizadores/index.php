@@ -1,4 +1,15 @@
 <?php include("../../db.php"); 
+session_start();
+if(!isset($_SESSION['utilizador'])){
+    header("Location: ../../login.php");
+    exit();
+}
+
+if($_SESSION['tipo']!="administrador"){
+    echo "Acesso negado!";
+   header("Location: ../../login.php");
+    exit();
+}
 
 if(isset($_GET['txtID'])){
     
@@ -56,7 +67,7 @@ $lista_utilizadores = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
                         <td><?php echo $registo['utilizador']; ?></td>
                         <td><?php echo $registo['email']; ?></td>
-                        <td><?php echo $registo['password']; ?></td>
+                        <td><?php echo $registo['password_user']; ?></td>
                         <td><?php echo $registo['tipo']; ?></td>
 
                         <td>

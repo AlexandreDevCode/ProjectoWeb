@@ -1,5 +1,18 @@
-<?php $url_base = "http://localhost/projeto_labstock"
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$url_base = "http://localhost/projeto_labstock";
+
+if(!isset($_SESSION['utilizador'])){
+    header("Location:".$url_base."login.php");
+    exit();
+}
+
+
 ?>
+
 
 <!doctype html>
 <html lang="eng">
@@ -43,27 +56,39 @@
                     >HomePage <span class="visually-hidden">(current)</span></a
                 >
             </li>
+            
+                    <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
 
-            <li class="nav-item">
+                        <li class="nav-item">
                 <a class="nav-link" href="<?php echo $url_base;?>/pages/utilizadores">Utilizadores</a>
             </li>
+
+            <?php } ?>
    
-
-            <li class="nav-item">
-                  <a class="nav-link" href="<?php echo $url_base;?>/pages/equipamentos">Equipamentos</a>
+                    <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
+                            <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $url_base;?>/pages/equipamentos">Equipamentos</a>
             </li>
 
-            <li class="nav-item">
-                  <a class="nav-link" href="<?php echo $url_base;?>/pages/requisicoes">Requisições</a>
+            <?php } ?>
+
+                <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
+                            <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $url_base;?>/pages/requisicoes">Requisições</a>
             </li>
 
-            <li class="nav-item">
+            <?php } ?>
+
+                    <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
+                        <li class="nav-item">
                   <a class="nav-link" href="<?php echo $url_base;?>/pages/estatisticas">Estastísticas</a>
             </li>
 
+            <?php } ?>
+
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="<?php echo $url_base;?>/logout.php">Logout</a>
             </li>
 
         </ul>

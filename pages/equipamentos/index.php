@@ -1,5 +1,18 @@
 <?php
 include("../../db.php");
+session_start();
+
+if(!isset($_SESSION['utilizador'])){
+    header("Location: ../../login.php");
+    exit();
+}
+
+if($_SESSION['tipo']!="administrador"){
+    echo "Acesso negado!";
+   header("Location: ../../login.php");
+    exit();
+}
+
 
 if(isset($_GET['txtID'])){
     $sentencia=$conexion->prepare("SELECT foto_equip  FROM `tbl_equipamento` WHERE id_equipamento= :id_equipamento");

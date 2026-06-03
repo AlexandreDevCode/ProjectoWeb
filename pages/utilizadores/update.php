@@ -16,7 +16,7 @@ if(isset($_GET['txtID'])){
 
     $utilizador = $registo['utilizador'];
     $email = $registo['email'];
-    $password = $registo['password'];
+    $password_user = $registo['password_user'];
     $tipo = $registo['tipo'];
 }
 
@@ -25,7 +25,7 @@ if($_POST){
     $txtID = (isset($_GET['txtID'])?$_GET['txtID']:"");
     $utilizador = (isset($_POST["utilizador"])?$_POST["utilizador"]:"");
     $email = (isset($_POST["email"])?$_POST["email"]:"");
-    $password = (isset($_POST["password"])?$_POST["password"]:"");
+    $password_user = (isset($_POST["password_user"])?$_POST["password_user"]:"");
     $tipo = (isset($_POST["tipo"])?$_POST["tipo"]:"");
 
     $sentencia = $conexion->prepare("
@@ -33,13 +33,13 @@ if($_POST){
     SET
         utilizador=:utilizador,
         email=:email,
-        password=:password,
+        password_user=:password_user,
         tipo=:tipo
     WHERE id_utilizador=:id_utilizador");
 
     $sentencia->bindParam(":utilizador",$utilizador);
     $sentencia->bindParam(":email",$email);
-    $sentencia->bindParam(":password",$password);
+    $sentencia->bindParam(":password_user",$password_user);
     $sentencia->bindParam(":tipo",$tipo);
     $sentencia->bindParam(":id_utilizador",$txtID);
 
@@ -103,10 +103,10 @@ if($_POST){
                 <label class="form-label">Password</label>
                 <input
                     type="text"
-                    value="<?php echo $password;?>"
+                    value="<?php echo $password_user;?>"
                     class="form-control"
-                    name="password"
-                    id="password"
+                    name="password_user"
+                    id="password_user"
                     placeholder="Password"
                 />
             </div>
