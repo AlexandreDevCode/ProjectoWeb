@@ -62,6 +62,8 @@ if(!isset($_SESSION['utilizador'])){
                         <li class="nav-item">
                 <a class="nav-link" href="<?php echo $url_base;?>/pages/utilizadores">Utilizadores</a>
             </li>
+            
+            
 
             <?php } ?>
    
@@ -75,6 +77,12 @@ if(!isset($_SESSION['utilizador'])){
                 <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
                             <li class="nav-item">
                         <a class="nav-link" href="<?php echo $url_base;?>/pages/requisicoes">Requisições</a>
+            </li>
+
+            <?php } ?>
+                 <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
+                            <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $url_base;?>/pages/categoria">categorias</a>
             </li>
 
             <?php } ?>

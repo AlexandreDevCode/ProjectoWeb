@@ -59,14 +59,6 @@ $lista_equip=$sentencia->fetchALL(PDO::FETCH_ASSOC);
 <div class="card">
     <div class="card-header">
 
-    <a
-        name=""
-        id=""
-        class="btn btn-info"
-        href="<?php echo $url_base;?>/pages/equipamentos/createcategory.php"
-        role="button"
-        >Adicionar  Categoria</a
-    >
 
     <a
         name=""
