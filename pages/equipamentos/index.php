@@ -98,7 +98,15 @@ $lista_equip=$sentencia->fetchALL(PDO::FETCH_ASSOC);
                                     alt="" />
                         </td>
                         <td><?php echo $registo['nome_equip'];?></td>
-                        <td><?php echo $registo['estado'];?></td>
+                        <td><?php if($registo['estado'] == "Disponível"){ ?>
+                                    <span class="badge bg-success">
+                                        <?php echo $registo['estado']; ?>
+                                    </span>
+                                <?php } else { ?>
+                                    <span class="badge bg-danger">
+                                        <?php echo $registo['estado']; ?>
+                                    </span>
+                                <?php } ?></td>
                         <td><?php echo $registo['quantidade'];?></td>
                         <td><?php echo $registo['categoria'];?></td>
                        

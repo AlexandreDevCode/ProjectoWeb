@@ -43,7 +43,7 @@ $lista_categoria = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="table-responsive-sm">
 
-            <table class="table" id="table_id">
+            <table class="table" >
 
                 <thead>
                     <tr>

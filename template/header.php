@@ -56,6 +56,24 @@ if(!isset($_SESSION['utilizador'])){
                     >HomePage <span class="visually-hidden">(current)</span></a
                 >
             </li>
+
+            <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "utilizador"){ ?>
+
+                        <li class="nav-item">
+                <a class="nav-link" href="<?php echo $url_base;?>/pages/requerer">Requerer</a>
+            </li>
+            
+            <?php } ?>
+
+            
+            <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "utilizador"){ ?>
+
+                        <li class="nav-item">
+                <a class="nav-link" href="<?php echo $url_base;?>/pages/inventario">Inventário</a>
+            </li>
+            
+            <?php } ?>
+
             
                     <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
 
@@ -63,7 +81,12 @@ if(!isset($_SESSION['utilizador'])){
                 <a class="nav-link" href="<?php echo $url_base;?>/pages/utilizadores">Utilizadores</a>
             </li>
             
-            
+            <?php } ?>
+
+            <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
+                            <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $url_base;?>/pages/categoria">Categorias</a>
+            </li>
 
             <?php } ?>
    
@@ -80,12 +103,7 @@ if(!isset($_SESSION['utilizador'])){
             </li>
 
             <?php } ?>
-                 <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
-                            <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $url_base;?>/pages/categoria">categorias</a>
-            </li>
-
-            <?php } ?>
+                 
 
                     <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == "administrador"){ ?>
                         <li class="nav-item">
