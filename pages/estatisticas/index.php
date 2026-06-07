@@ -35,7 +35,7 @@ FROM tbl_utilizador
 $sentencia->execute();
 $totalUser = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-/* adicionar total requisiçõ*/ 
+// adicionar total requisiçõ 
 
 $sentencia = $conexion->prepare("
 SELECT
