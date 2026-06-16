@@ -32,9 +32,7 @@ $lista_equip=$sentencia->fetchALL(PDO::FETCH_ASSOC);
                         <th scope="col">Imagem</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Quantidade</th>
                         <th scope="col">Categoria</th>
-                        <th scope="col">Qtd. Requerida</th>
                         <th scope="col">Ação</th>
                     </tr>
                 </thead>
@@ -57,25 +55,14 @@ $lista_equip=$sentencia->fetchALL(PDO::FETCH_ASSOC);
                                         <?php echo $registo['estado']; ?>
                                     </span>
                                 <?php } ?></td>
-                        <td><?php echo $registo['quantidade'];?></td>
                         <td><?php echo $registo['categoria'];?></td>
-                        <td style="width:120px;">
-                            <?php if($registo['estado'] == "Disponível"){ ?>
-                            <input
-                                type="number"
-                                class="form-control"
-                                min="1"
-                                max="<?php echo $registo['quantidade']; ?>"
-                                value="1"
-                            >
-                            <?php } ?>
-                        </td>
+                        
                        
                       <td>
                        <?php if($registo['estado'] == "Disponível"){ ?>
                                     <a
                                         class="btn btn-success"
-                                        href=""
+                                        href="create.php?id_equipamento=<?php echo $registo['id_equipamento'];?>"
                                         role="button"
                                     >
                                         Requerer
