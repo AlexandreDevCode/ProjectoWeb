@@ -26,15 +26,17 @@ if($_POST && isset($_GET['id_equipamento'])){
 
     $id_equipamento = $_GET['id_equipamento'];
     $quantidade = $_POST['quantidade'];
+    $estado_req ="pendente";
     $data = date('Y-m-d');
 
     // Cria requisição
     $sentencia = $conexion->prepare("
-        INSERT INTO tbl_requisicao (id_utilizador, data)
-        VALUES (:id_utilizador, :data)
+        INSERT INTO tbl_requisicao (id_utilizador, data, estado_req)
+        VALUES (:id_utilizador, :data, :estado_req)
     ");
     $sentencia->bindParam(":id_utilizador", $id_utilizador);
     $sentencia->bindParam(":data", $data);
+    $sentencia->bindParam(":estado_req", $estado_req);
     $sentencia->execute();
 
     $id_requisicao = $conexion->lastInsertId();
@@ -50,7 +52,7 @@ if($_POST && isset($_GET['id_equipamento'])){
     $sentencia->bindParam(":quantidade", $quantidade);
     $sentencia->execute();
 
-    header("Location: index.php");
+    header("Location: index.php?sucesso=1");
     exit();
 }
 
@@ -70,7 +72,7 @@ if (isset($_GET['id_equipamento'])) {
     $sentencia->execute();
     $equip = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-    // Se o equipamento existir no banco de dados, mostra o formulário de quantidade
+    // Se o equipamento existir na base de dados, mostra o formulário de quantidade
     if ($equip) {
 ?>
         <div class="card mt-3">
@@ -173,6 +175,22 @@ if (isset($_GET['id_equipamento'])) {
             </div>
         </div>
     </div>
+
 <?php } ?>
+
+<?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+    <script>
+        Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success"
+        });
+        // Limpa o ?sucesso=1 da URL de forma elegante
+        window.history.replaceState({}, document.title, window.location.pathname);
+    </script>
+<?php endif; ?>
+
+
+
 
 <?php include("../../template/footer.php"); ?>

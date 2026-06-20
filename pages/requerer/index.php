@@ -83,5 +83,19 @@ $lista_equip=$sentencia->fetchALL(PDO::FETCH_ASSOC);
         
 </div>
 
+<?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+    <script>
+        Swal.fire({
+            title: "Equipamento Requisitado!",
+            text: "Aguarde a resposta do administrador.",
+            icon: "success"
+        });
+
+        // Limpa o "?sucesso=1" da barra de endereço para não repetir o alerta ao fazer F5
+        window.history.replaceState({}, document.title, window.location.pathname);
+    </script>
+<?php endif; ?>
+
+
 
 <?php include("../../template/footer.php");?>
