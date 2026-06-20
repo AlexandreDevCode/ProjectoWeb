@@ -20,6 +20,37 @@ FROM tbl_equipamento
 $sentencia->execute();
 $totalEquip = $sentencia->fetch(PDO::FETCH_ASSOC);
 
+$sentencia = $conexion->prepare("
+SELECT COUNT(*) as total
+FROM tbl_requisicao
+");
+$sentencia->execute();
+$totalRequisicoes = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+$sentencia = $conexion->prepare("
+SELECT COUNT(*) as total
+FROM tbl_requisicao
+WHERE estado_req = 'pendente'
+");
+$sentencia->execute();
+$pendentes = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+$sentencia = $conexion->prepare("
+SELECT COUNT(*) as total
+FROM tbl_requisicao
+WHERE estado_req = 'confirmado'
+");
+$sentencia->execute();
+$confirmadas = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+$sentencia = $conexion->prepare("
+SELECT COUNT(*) as total
+FROM tbl_requisicao
+WHERE estado_req = 'recusado'
+");
+
+$sentencia->execute();
+$recusadas = $sentencia->fetch(PDO::FETCH_ASSOC);
 
 $sentencia = $conexion->prepare("
 SELECT COUNT(*) as total
@@ -94,7 +125,60 @@ include("../../template/header.php");
 
         <hr>
 
-        <h4>Equipamentos por Categoria</h4>
+        <div class="row">
+
+        <h4>Requisições</h4>
+
+
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5>Total Requisições</h5>
+                <h2><?php echo $totalRequisicoes['total']; ?></h2>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-3">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-body">
+                <h5>Pendentes</h5>
+                <h2><?php echo $pendentes['total']; ?></h2>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5>Confirmadas</h5>
+                <h2><?php echo $confirmadas['total']; ?></h2>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5>Recusadas</h5>
+                <h2><?php echo $recusadas['total']; ?></h2>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+</div>
+
+        
+        <h5>Equipamentos por Categoria</h5>
+
+        
+
 
         <table class="table table-bordered">
 
@@ -115,6 +199,8 @@ include("../../template/header.php");
                 </tr>
 
                 <?php } ?>
+
+                
 
             </tbody>
 
