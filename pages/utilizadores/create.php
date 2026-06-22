@@ -3,7 +3,7 @@
 if($_POST){
 
     $utilizador = (isset($_POST["utilizador"])?$_POST["utilizador"]:"");
-    $password_user = (isset($_POST["password_user"])?$_POST["password_user"]:"");
+    $password_user = password_hash($_POST["password_user"], PASSWORD_DEFAULT);
     $email = (isset($_POST["email"])?$_POST["email"]:"");
     $tipo = (isset($_POST["tipo"])?$_POST["tipo"]:"utilizador");
 
